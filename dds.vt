@@ -1,0 +1,88 @@
+`timescale 1 ns/ 1 ns
+module dds_vlg_tst();
+
+reg clk;
+reg [23:0] fc;
+reg [15:0] fd;
+reg [23:0] fs;
+reg [3:0] ma;
+reg [1:0]mode;
+reg rst;
+// wires                                               
+wire [15:0]  sig_out;
+wire [15:0]	carrier;
+// assign statements (if any)    
+/*                      
+dds i1 (
+// port map - connection between master ports and signals/registers   
+	.clk(clk),
+	.fc(fc),
+	.fd(fd),
+	.fs(fs),
+	.ma(ma),
+	.mode(mode),
+	.rst(rst),
+	.sig_out(sig_out)
+);*/
+wire[15:0]sig_mod;wire [31:0]result;
+wire[15:0]sig_AM;
+wire[15:0]sig_demod;
+/*
+wire [15:0]carrier_s={!carrier[15],carrier[14:0]};
+wire [15:0]sig_mod_s={!sig_mod[15],sig_mod[14:0]};
+
+mult_s	mult_s_inst0 (
+	.dataa ( sig_mod_s ),
+	.datab ( carrier_s ),
+	.result ( result )
+	);
+	*/
+/*
+sin_fc	i2(
+	.clk(clk),	.rst(rst),
+	.fc(fc),	.carrier(carrier)
+);
+sin_fc	i3(
+	.clk(clk),	.rst(rst),
+	.fc(fs),	.carrier(sig_mod)
+);
+AM i1(
+	.carrier(carrier),		.ma(ma),
+	.clk(clk),
+	.sig_mod(sig_mod),	.sig_out(sig_AM)
+);
+
+AMdemod AMdemod_inst(
+        .clk(clk),      .rst(rst),
+        .sig_in(sig_AM),
+        .carrier(carrier),
+        .sig_out(sig_demod)
+);*/
+
+dds	i0(
+	.clk(clk),		.rst(rst),
+	.fc(fc),		.fs(fs),
+	.ma(ma),		.sig_out(sig_out),
+	.mode(mode),	.fd(fd)
+);
+
+initial                                                
+begin                                                  
+	clk=0;rst=1;mode=3;ma=10;
+	fd=900_000;
+	#10rst=0;
+	fc=1_000_000;fs=10_000;
+	#20rst=1;
+forever #5 clk=~clk;
+$display("Running testbench");                       
+end                                                    
+initial begin
+	/*fc=1000;
+	#2_000_000  fc=1010;
+	#2_000_000  fc=10000;
+	#200_000    fc=100_000;
+	#20_000		fc=1_000_000;*/
+	//#2000		fc=10_000_000;
+end                                                 
+endmodule
+

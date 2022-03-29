@@ -1,0 +1,8 @@
+v1
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,AM:AM_inst|mult_s17x16_32:mult_s_inst2|lpm_mult:lpm_mult_component|mult_m8n:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,AM:AM_inst|mult_s17x16_32:mult_s_inst|lpm_mult:lpm_mult_component|mult_m8n:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,sin_fc:sin_fc_inst|lpm_mult:Mult0|mult_lgt:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,sin_fc:sin_fc_inst|lpm_mult:Mult0|mult_lgt:auto_generated|mac_out4,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,sin_fc:sin_fc_inst2|lpm_mult:Mult0|mult_lgt:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,sin_fc:sin_fc_inst2|lpm_mult:Mult0|mult_lgt:auto_generated|mac_out4,
+PORT_SWAPPING,PORT_SWAPPING_FINISHED,AM:AM_inst|mult_s17x16_32:mult_s_inst2|lpm_mult:lpm_mult_component|mult_m8n:auto_generated|mac_mult1,

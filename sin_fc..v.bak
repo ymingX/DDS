@@ -1,0 +1,7 @@
+module sin_fc (
+    input clk,         input rst,
+    input [23:0]fc,
+    output [15:0]carrier
+);
+    
+endmodule

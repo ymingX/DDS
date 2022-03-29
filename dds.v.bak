@@ -1,0 +1,9 @@
+module dds (
+    input clk,          input rst,
+    input [23:0]fc,     input mode,
+    input [21:0]fs,     input [3:0]ma,
+    input [15:0]fd.
+    output[15:0]sig_out
+);
+    
+endmodule

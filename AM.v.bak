@@ -1,0 +1,32 @@
+module AM (
+    input [15:0]carrier,    input [3:0]ma,//[1,10] 调制度(x0.1)
+    input [23:0]fs,
+    output [15:0]sig_out
+);
+    //sigout=(32767+0.1ma*sig_mod(signed) )*carrier(signed)=temp*carrier
+    //0.1ma*sig_mod=(ma*102*sig_mod)>>10
+    wire [15:0]sig_mod;wire[10:0] maa=ma*102;
+
+    sin_fc	sin_fc_inst2 (//生成调制信号sig_mod
+	.clk(clk),      .rst(rst),
+	.fc(fs),       .carrier(sig_mod)   
+	);
+
+    carrier[15]=~carrier[15];sig_mod[15]=~sig_mod[15]; //无符号转有符号
+    wire [31:0]temp;
+
+    mult_s	mult_s_inst (
+	.dataa ( sig_mod ),
+	.datab ( maa ),
+	.result ( temp )
+	);
+
+    temp=(temp>>10)+32767;wire [31:0]result;
+
+    mult_s	mult_s_inst2 (
+	.dataa ( temp[15:0] ),
+	.datab ( carrier ),
+	.result ( result )
+	);
+    assign sigout=result[31:16];
+endmodule
