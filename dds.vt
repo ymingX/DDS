@@ -71,7 +71,7 @@ begin
 	clk=0;rst=1;mode=3;ma=10;
 	fd=900_000;
 	#10rst=0;
-	fc=1_000_000;fs=10_000;
+	fc=500_000;fs=10_000;
 	#20rst=1;
 forever #5 clk=~clk;
 $display("Running testbench");                       
